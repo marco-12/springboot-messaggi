@@ -56,5 +56,16 @@ public class RestControllerChat {
 		return true;
 	}
 
-//	@RequestMapping (value = ("/gestione_messaggio"))
+	@RequestMapping (value = ("/messaggio"), method = RequestMethod.POST)
+	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestBody String nickname) {
+		return messaggioService.findAll();
+		//da finire
+		
+	}
+	@RequestMapping (value = ("/messaggio"), method = RequestMethod.POST)
+	public boolean vediMessaggiUtenteInviati(@RequestBody Messaggio messaggio) {
+		
+		return true;
+	} 
+	
 }

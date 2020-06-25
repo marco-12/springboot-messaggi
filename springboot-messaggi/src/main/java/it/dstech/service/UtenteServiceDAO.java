@@ -9,7 +9,7 @@ public interface UtenteServiceDAO {
 	boolean add(Utente t);
 
 	List<Utente> findAll();
-
+	
 	void remove(Utente t);
-
+ 
 }

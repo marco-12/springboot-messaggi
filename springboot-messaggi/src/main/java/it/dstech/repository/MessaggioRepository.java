@@ -10,8 +10,10 @@ import it.dstech.model.Utente;
 
 public interface MessaggioRepository extends JpaRepository<Messaggio, Long>{
 	
-	public List<Messaggio>findByUtenteROrderByDataDesc(Utente utente); 
+	public List<Messaggio>findByUtenteROrderByDataDesc(Utente utenteR); 
 	
-	public List<Messaggio>findByUtenteIOrderByDataDesc(Utente utente); 
+	public List<Messaggio>findByUtenteIOrderByDataDesc(Utente utenteI); 
+	
+	 
 
 }
