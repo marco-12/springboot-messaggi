@@ -17,6 +17,9 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 
 	@Override
 	public boolean add(Utente t) {
+		if (utenteRepos.existsById(t.getNickname())) {
+			return false;
+		}
 		Utente save = utenteRepos.save(t);
 		return save != null;
 	}

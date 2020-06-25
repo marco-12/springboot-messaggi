@@ -29,6 +29,7 @@ public class RestControllerChat {
 	
 	@RequestMapping(value = ("/"), method = RequestMethod.POST)
 	public boolean addNewUtente(@RequestBody Utente persona) {
+		
 		return utenteService.add(persona);
 	}
 	
@@ -39,20 +40,21 @@ public class RestControllerChat {
 	}
 	
 	
-	@RequestMapping("/")
+	@RequestMapping("/messaggio")
 	public List<Messaggio> getAllMessaggi() {
 		return messaggioService.findAll();
 	}
 	
-	@RequestMapping(value = ("/"), method = RequestMethod.POST)
-	public boolean addNewMessaggio(@RequestBody Messaggio persona) {
-		return messaggioService.add(persona);
+	@RequestMapping(value = ("/messaggio"), method = RequestMethod.POST)
+	public boolean addNewMessaggio(@RequestBody Messaggio messaggio) {
+		return messaggioService.add(messaggio);
 	}
 	
-	@RequestMapping(value = ("/"), method = RequestMethod.DELETE)
-	public boolean removeMessaggio(@RequestBody Messaggio persona) {
-		messaggioService.remove(persona);
+	@RequestMapping(value = ("/messaggio"), method = RequestMethod.DELETE)
+	public boolean removeMessaggio(@RequestBody Messaggio messaggio) {
+		messaggioService.remove(messaggio);
 		return true;
 	}
 
+//	@RequestMapping (value = ("/gestione_messaggio"))
 }

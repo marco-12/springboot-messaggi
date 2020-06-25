@@ -1,34 +1,34 @@
 package it.dstech.model;
 
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Messaggio {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String testo;
-	
+
 	@OneToOne
 	private Utente utenteR;
-	
+
 	@OneToOne
 	private Utente utenteI;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "E, dd MMM yyyy HH:mm:ss z")
-	private String data;
-	
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ", locale = "it_IT")
+	private LocalDateTime data;
+
 	public Messaggio() {
-		
+
 	}
 
 	public Long getId() {
@@ -39,6 +39,30 @@ public class Messaggio {
 		this.id = id;
 	}
 
+	public Utente getUtenteR() {
+		return utenteR;
+	}
+
+	public void setUtenteR(Utente utenteR) {
+		this.utenteR = utenteR;
+	}
+
+	public Utente getUtenteI() {
+		return utenteI;
+	}
+
+	public void setUtenteI(Utente utenteI) {
+		this.utenteI = utenteI;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
+
 	public String getTesto() {
 		return testo;
 	}
@@ -46,7 +70,5 @@ public class Messaggio {
 	public void setTesto(String testo) {
 		this.testo = testo;
 	}
-
-	
 
 }
