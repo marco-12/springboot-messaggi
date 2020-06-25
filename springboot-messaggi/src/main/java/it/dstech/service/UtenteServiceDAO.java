@@ -11,5 +11,6 @@ public interface UtenteServiceDAO {
 	List<Utente> findAll();
 	
 	void remove(Utente t);
- 
+
+	Utente getUtente(String t);
 }

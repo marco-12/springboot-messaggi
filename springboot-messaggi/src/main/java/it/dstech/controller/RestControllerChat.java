@@ -3,9 +3,11 @@ package it.dstech.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.model.Messaggio;
@@ -57,15 +59,15 @@ public class RestControllerChat {
 	}
 
 	@RequestMapping (value = ("/messaggio"), method = RequestMethod.POST)
-	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestBody String nickname) {
-		return messaggioService.findAll();
-		//da finire
+	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestParam("nickname") String nickname) {
 		
+		return messaggioService.findByUtenteROrderByDataDesc(utenteService.getUtente(nickname));
+	
 	}
 	@RequestMapping (value = ("/messaggio"), method = RequestMethod.POST)
-	public boolean vediMessaggiUtenteInviati(@RequestBody Messaggio messaggio) {
+	public List<Messaggio> vediMessaggiUtenteInviati(@RequestParam("nickname") String nickname) {
 		
-		return true;
+		return messaggioService.findByUtenteIOrderByDataDesc(utenteService.getUtente(nickname));
 	} 
 	
 }

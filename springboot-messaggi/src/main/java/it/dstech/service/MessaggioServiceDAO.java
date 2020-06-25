@@ -17,6 +17,8 @@ public interface MessaggioServiceDAO {
 	List<Messaggio>findByUtenteROrderByDataDesc(Utente utenteR); 
 
 	void remove(Messaggio t);
+
+	List<Messaggio> findByUtenteIOrderByDataDesc(Utente utente);
 	
 
 }

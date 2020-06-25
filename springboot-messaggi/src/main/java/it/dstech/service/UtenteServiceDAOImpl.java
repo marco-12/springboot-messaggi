@@ -1,6 +1,7 @@
 package it.dstech.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,19 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 	public void remove(Utente t) {
 		utenteRepos.delete(t);
 	}
+
+	@Override
+	public Utente getUtente(String t) {
+		return utenteRepos.findByNickname(t);
+	}
+
+
+
+	
+
+	
+
+
 
 
 }
