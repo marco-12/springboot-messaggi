@@ -1,12 +1,13 @@
 package it.dstech.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.dstech.repository.MessaggioRepository;
 import it.dstech.repository.UtenteRepository;
+import it.dstech.model.Messaggio;
 import it.dstech.model.Utente;
 
 @Service
@@ -15,6 +16,9 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 
 	@Autowired
 	private UtenteRepository utenteRepos;
+	
+	@Autowired
+	private MessaggioRepository messageRepos;
 
 	@Override
 	public boolean add(Utente t) {
@@ -38,6 +42,11 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 	@Override
 	public Utente getUtente(String t) {
 		return utenteRepos.findByNickname(t);
+	}
+
+	@Override
+	public List<Messaggio> findMessaggiRicevuti(Messaggio messaggio) {
+		return messageRepos.findByUtenteROrderByDataDesc(messaggio.getUtenteR());
 	}
 
 

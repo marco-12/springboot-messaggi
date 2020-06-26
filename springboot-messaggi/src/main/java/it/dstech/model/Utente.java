@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -24,7 +23,10 @@ public class Utente {
 	
 	
 	@OneToMany
-	private List<Messaggio> listaMessaggio;
+	private List<Messaggio> listaMessaggiRicevuti;
+	
+	@OneToMany
+	private List<Messaggio> listaMessaggiInviati;
 	
 	public Utente() {
 		
@@ -62,16 +64,22 @@ public class Utente {
 		this.eta = eta;
 	}
 
-	public List<Messaggio> getListaMessaggio() {
-		return listaMessaggio;
+	public List<Messaggio> getListaMessaggiRicevuti() {
+		return listaMessaggiRicevuti;
 	}
 
-	public void setListaMessaggio(List<Messaggio> listaMessaggio) {
-		this.listaMessaggio = listaMessaggio;
+	public void setListaMessaggiRicevuti(List<Messaggio> listaMessaggiRicevuti) {
+		this.listaMessaggiRicevuti = listaMessaggiRicevuti;
 	}
 
-	
-	
+	public List<Messaggio> getListaMessaggiInviati() {
+		return listaMessaggiInviati;
+	}
+
+	public void setListaMessaggiInviati(List<Messaggio> listaMessaggiInviati) {
+		this.listaMessaggiInviati = listaMessaggiInviati;
+	}
+
 	
 
 }

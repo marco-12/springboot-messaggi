@@ -3,11 +3,9 @@ package it.dstech.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.model.Messaggio;
@@ -42,15 +40,23 @@ public class RestControllerChat {
 	}
 	
 	
-	@RequestMapping(value = "/lista_messaggi_utente", method = RequestMethod.POST)
-	public List<Messaggio> getAllMessaggi(@RequestBody Utente utente) {
-		return messaggioService.listaMessaggiUtente(utente.getNickname());
+	@RequestMapping(value = "/lista_messaggi_ricevuti_utente", method = RequestMethod.POST)
+	public List<Messaggio> getMessaggiRiceuti(@RequestBody Utente utente) {
+		return messaggioService.listaMessaggiRicevutiUtente(utente.getNickname());
+	} 
+	
+	@RequestMapping(value = "/lista_messaggi_inviati_utente", method = RequestMethod.POST)
+	public List<Messaggio> getMessaggiInviati(@RequestBody Utente utente) {
+		return messaggioService.listaMessaggiInviatiUtente(utente.getNickname());
 	} 
 	
 	@RequestMapping(value = ("/invia_messaggio"), method = RequestMethod.POST)
 	public boolean addNewMessaggio(@RequestBody Messaggio messaggio) {
-		return messaggioService.add(messaggio);
+		messaggioService.salvaUtente(messaggio);
+		return true;
 	}
+	
+	
 	
 	@RequestMapping(value = ("/rimuovi_messaggio"), method = RequestMethod.DELETE)
 	public boolean removeMessaggio(@RequestBody Messaggio messaggio) {

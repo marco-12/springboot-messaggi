@@ -21,22 +21,22 @@ public class MessaggioServiceDAOImpl implements MessaggioServiceDAO{
 	private UtenteRepository utenteRepos;
 
 	@Override
-	public boolean add(Messaggio t ) {
+	public boolean salvaUtente(Messaggio t) {
 		
 		LocalDateTime data = LocalDateTime.now();
-		Utente invio = t.getUtenteI();
-		Utente riceve = t.getUtenteR();
-		t.setUtenteI(invio);
-		t.setUtenteR(riceve);
+		t.setUtenteI(t.getUtenteI());
+		t.setUtenteR(t.getUtenteR());
 		t.setData(data);
-		invio.getListaMessaggio().add(t);
-		riceve.getListaMessaggio().add(t);
 		Messaggio save = messaggioRepos.save(t);
-		utenteRepos.save(invio);
-		utenteRepos.save(riceve);
+		save.getUtenteI().getListaMessaggiInviati().add(save);
+		save.getUtenteR().getListaMessaggiRicevuti().add(save);
+		utenteRepos.save(save.getUtenteI());
+		utenteRepos.save(save.getUtenteR());
 		
 		return save != null;
 	}
+	
+	
 	
 	@Override
 	public void remove(Messaggio t) {
@@ -55,9 +55,17 @@ public class MessaggioServiceDAOImpl implements MessaggioServiceDAO{
 	}
 
 	@Override
-	public List<Messaggio> listaMessaggiUtente(String nickname) {
-		return utenteRepos.findByNickname(nickname).getListaMessaggio();
+	public List<Messaggio> listaMessaggiRicevutiUtente(String nickname) {
+		return utenteRepos.findByNickname(nickname).getListaMessaggiRicevuti();
 		
 	}
+	
+	@Override
+	public List<Messaggio> listaMessaggiInviatiUtente(String nickname) {
+		return utenteRepos.findByNickname(nickname).getListaMessaggiInviati();
+		
+	}
+
+	
 
 }

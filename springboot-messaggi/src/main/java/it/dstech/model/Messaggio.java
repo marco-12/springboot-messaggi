@@ -2,6 +2,7 @@ package it.dstech.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +21,10 @@ public class Messaggio {
 
 	private String testo;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Utente utenteR;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Utente utenteI;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
