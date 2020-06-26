@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -24,7 +26,8 @@ public class Messaggio {
 	@OneToOne
 	private Utente utenteI;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ", locale = "it_IT")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime data;
 
 	public Messaggio() {

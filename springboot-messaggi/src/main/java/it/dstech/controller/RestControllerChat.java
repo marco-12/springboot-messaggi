@@ -58,13 +58,13 @@ public class RestControllerChat {
 		return true;
 	}
 
-	@RequestMapping (value = ("/listaMessaggioUno"), method = RequestMethod.POST)
+	@RequestMapping (value = ("/listaMessaggioUno"), method = RequestMethod.GET)
 	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestParam("nickname") String nickname) {
 		
 		return messaggioService.findByUtenteROrderByDataDesc(utenteService.getUtente(nickname));
 	
 	}
-	@RequestMapping (value = ("/listaMessaggioDue"), method = RequestMethod.POST)
+	@RequestMapping (value = ("/listaMessaggioDue"), method = RequestMethod.GET)
 	public List<Messaggio> vediMessaggiUtenteInviati(@RequestParam("nickname") String nickname) {
 		
 		return messaggioService.findByUtenteIOrderByDataDesc(utenteService.getUtente(nickname));
