@@ -29,45 +29,46 @@ public class RestControllerChat {
 		return utenteService.findAll();
 	}
 	
-	@RequestMapping(value = ("/"), method = RequestMethod.POST)
+	@RequestMapping(value = ("/aggiungi_utente"), method = RequestMethod.POST)
 	public boolean addNewUtente(@RequestBody Utente persona) {
 		
 		return utenteService.add(persona);
 	}
 	
-	@RequestMapping(value = ("/"), method = RequestMethod.DELETE)
+	@RequestMapping(value = ("/rimuovi_utente"), method = RequestMethod.DELETE)
 	public boolean removeUtente(@RequestBody Utente persona) {
 		utenteService.remove(persona);
 		return true;
 	}
 	
 	
-	@RequestMapping("/messaggio")
-	public List<Messaggio> getAllMessaggi() {
-		return messaggioService.findAll();
-	}
+	@RequestMapping(value = "/lista_messaggi_utente", method = RequestMethod.POST)
+	public List<Messaggio> getAllMessaggi(@RequestBody Utente utente) {
+		return messaggioService.listaMessaggiUtente(utente.getNickname());
+	} 
 	
-	@RequestMapping(value = ("/messaggio"), method = RequestMethod.POST)
+	@RequestMapping(value = ("/invia_messaggio"), method = RequestMethod.POST)
 	public boolean addNewMessaggio(@RequestBody Messaggio messaggio) {
 		return messaggioService.add(messaggio);
 	}
 	
-	@RequestMapping(value = ("/messaggio"), method = RequestMethod.DELETE)
+	@RequestMapping(value = ("/rimuovi_messaggio"), method = RequestMethod.DELETE)
 	public boolean removeMessaggio(@RequestBody Messaggio messaggio) {
 		messaggioService.remove(messaggio);
 		return true;
 	}
 
-	@RequestMapping (value = ("/listaMessaggioUno"), method = RequestMethod.GET)
-	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestParam("nickname") String nickname) {
+	@RequestMapping (value = ("/lista_messaggo_utente_ricevuti"), method = RequestMethod.GET)
+	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestBody Utente utente) {
 		
-		return messaggioService.findByUtenteROrderByDataDesc(utenteService.getUtente(nickname));
+		return messaggioService.findByUtenteROrderByDataDesc(utenteService.getUtente(utente.getNickname()));
 	
-	}
-	@RequestMapping (value = ("/listaMessaggioDue"), method = RequestMethod.GET)
-	public List<Messaggio> vediMessaggiUtenteInviati(@RequestParam("nickname") String nickname) {
+	} 
+	
+	@RequestMapping (value = ("/lista_messaggo_utente_inviati"), method = RequestMethod.GET)
+	public List<Messaggio> vediMessaggiUtenteInviati(@RequestBody Utente utente) {
 		
-		return messaggioService.findByUtenteIOrderByDataDesc(utenteService.getUtente(nickname));
+		return messaggioService.findByUtenteIOrderByDataDesc(utenteService.getUtente(utente.getNickname()));
 	} 
 	
 }

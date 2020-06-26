@@ -12,7 +12,7 @@ public interface MessaggioServiceDAO {
 	
 	boolean add(Messaggio t);
 
-	List<Messaggio> findAll();
+	List<Messaggio> listaMessaggiUtente(String nickname);
 	
 	List<Messaggio>findByUtenteROrderByDataDesc(Utente utenteR); 
 
