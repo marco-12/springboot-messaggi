@@ -30,7 +30,11 @@ public class RestControllerChat {
 		return utenteService.findAll();
 	}
 	
-	// CREARE METODO PER STAMPARE SOLO I NICKNAME
+	@RequestMapping(value = "/vediNickname", method = RequestMethod.GET)
+	@ApiOperation(value = "Recupera tutti i nickname dal sistema", notes = "Con questa chiamata riceveremo tutti i nickname degli utenti registrati al sistema")
+	public List<Utente> getNicknames() {
+		return utenteService.findNickname();
+	}
 	
 	@RequestMapping(value = ("/aggiungi_utente"), method = RequestMethod.POST)
 	@ApiOperation(value = "Aggiunge un utente dal sistema", notes = "Con questa chiamata inseriremo un utente nel sistema")
@@ -50,9 +54,8 @@ public class RestControllerChat {
 	@RequestMapping(value = "/lista_messaggi_ricevuti_utente", method = RequestMethod.POST)
 	@ApiOperation(value = "Restituisce la lista dei messaggi ricevuti", notes = "Con questa chiamata riceveremo la lista dei messaggi ricevuti dall'utente nel sistema")
 	public List<Messaggio> getMessaggiRiceuti(@ApiParam(value = "Oggetto utente per ricevere la sua lista di messaggi ricevuti", name = "utente") @RequestBody Utente utente) {
-		return messaggioService.listaMessaggiRicevutiUtente(utente.getNickname());
-	} 
-	
+		return utenteService.findMessaggiRicevuti(utente);
+	}
 	@RequestMapping(value = "/lista_messaggi_inviati_utente", method = RequestMethod.POST)
 	@ApiOperation(value = "Restituisce la lista dei messaggi inviati", notes = "Con questa chiamata riceveremo la lista dei messaggi inviati dall'utente nel sistema")
 	public List<Messaggio> getMessaggiInviati(@ApiParam(value = "Oggetto utente per ricevere la sua lista di messaggi inviati", name = "utente")@RequestBody Utente utente) {
@@ -62,7 +65,7 @@ public class RestControllerChat {
 	@RequestMapping(value = ("/invia_messaggio"), method = RequestMethod.POST)
 	@ApiOperation(value = "Invia Messaggio", notes = "Questo metodo permette ad un utente di inviare un messaggio di testo")
 	public boolean addNewMessaggio(@ApiParam(value = "Oggetto messaggio inviarlo al sistema", name = "messaggio") @RequestBody Messaggio messaggio) {
-		messaggioService.salvaUtente(messaggio);
+		messaggioService.salvaUtente(messaggio.getNicknameMittente(), messaggio);
 		return true;
 	}
 	
@@ -75,17 +78,4 @@ public class RestControllerChat {
 		return true;
 	}
 
-//	@RequestMapping (value = ("/lista_messaggio_utente_ricevuti"), method = RequestMethod.GET)
-//	public List<Messaggio>  vediMessaggiUtenteRicevuti(@RequestBody Utente utente) {
-//		
-//		return messaggioService.findByUtenteROrderByDataDesc(utenteService.getUtente(utente.getNickname()));
-//	
-//	} 
-//	
-//	@RequestMapping (value = ("/lista_messaggio_utente_inviati"), method = RequestMethod.GET)
-//	public List<Messaggio> vediMessaggiUtenteInviati(@RequestBody Utente utente) {
-//		
-//		return messaggioService.findByUtenteIOrderByDataDesc(utenteService.getUtente(utente.getNickname()));
-//	} 
-	
 }

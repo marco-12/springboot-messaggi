@@ -2,7 +2,10 @@ package it.dstech.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,7 +15,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class Utente {
 
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	private String nickname;
 
 	private String nome;
@@ -21,9 +28,6 @@ public class Utente {
 
 	private int eta;
 	
-	
-	@OneToMany
-	private List<Messaggio> listaMessaggiRicevuti;
 	
 	@OneToMany
 	private List<Messaggio> listaMessaggiInviati;
@@ -64,13 +68,6 @@ public class Utente {
 		this.eta = eta;
 	}
 
-	public List<Messaggio> getListaMessaggiRicevuti() {
-		return listaMessaggiRicevuti;
-	}
-
-	public void setListaMessaggiRicevuti(List<Messaggio> listaMessaggiRicevuti) {
-		this.listaMessaggiRicevuti = listaMessaggiRicevuti;
-	}
 
 	public List<Messaggio> getListaMessaggiInviati() {
 		return listaMessaggiInviati;
@@ -78,6 +75,14 @@ public class Utente {
 
 	public void setListaMessaggiInviati(List<Messaggio> listaMessaggiInviati) {
 		this.listaMessaggiInviati = listaMessaggiInviati;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	

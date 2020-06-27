@@ -11,17 +11,14 @@ public interface MessaggioServiceDAO {
 	
 	
 	
-	boolean salvaUtente(Messaggio t);
+	boolean salvaUtente(String nickname, Messaggio t);
 
 	
-	List<Messaggio>findByUtenteROrderByDataDesc(Utente utenteR); 
+	List<Messaggio>findByUtenteR(Utente utenteR); 
 
 	void remove(Messaggio t);
 
-	List<Messaggio> findByUtenteIOrderByDataDesc(Utente utente);
 
-	List<Messaggio> listaMessaggiRicevutiUtente(String nickname);
-	
 	List<Messaggio> listaMessaggiInviatiUtente(String nickname);
 	
 

@@ -20,14 +20,14 @@ public class Messaggio {
 	private Long id;
 
 	private String testo;
+	
+	private String nicknameMittente;
 
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Utente utenteR;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
-	private Utente utenteI;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime data;
 
@@ -51,13 +51,6 @@ public class Messaggio {
 		this.utenteR = utenteR;
 	}
 
-	public Utente getUtenteI() {
-		return utenteI;
-	}
-
-	public void setUtenteI(Utente utenteI) {
-		this.utenteI = utenteI;
-	}
 
 	public LocalDateTime getData() {
 		return data;
@@ -74,5 +67,15 @@ public class Messaggio {
 	public void setTesto(String testo) {
 		this.testo = testo;
 	}
+
+	public String getNicknameMittente() {
+		return nicknameMittente;
+	}
+
+	public void setNicknameMittente(String nicknameMittente) {
+		this.nicknameMittente = nicknameMittente;
+	}
+	
+	
 
 }

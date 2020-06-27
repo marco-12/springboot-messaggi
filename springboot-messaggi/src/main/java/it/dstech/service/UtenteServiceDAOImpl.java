@@ -1,7 +1,9 @@
 package it.dstech.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +24,24 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 
 	@Override
 	public boolean add(Utente t) {
-		if (utenteRepos.existsById(t.getNickname())) {
-			return false;
+		if (utenteRepos.existsById(t.getId())) {
+			Utente sovrascriviUtente = t;
+			
+			utenteRepos.save(sovrascriviUtente);
 		}
+		
 		Utente save = utenteRepos.save(t);
 		return save != null;
 	}
 
 	@Override
 	public List<Utente> findAll() {
+	return utenteRepos.findAll();
+	}
+	
+	@Override
+	public List<Utente> findNickname() {
+		
 		return utenteRepos.findAll();
 	}
 
@@ -45,8 +56,8 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 	}
 
 	@Override
-	public List<Messaggio> findMessaggiRicevuti(Messaggio messaggio) {
-		return messageRepos.findByUtenteROrderByDataDesc(messaggio.getUtenteR());
+	public List<Messaggio> findMessaggiRicevuti(Utente u) {
+		return messageRepos.findByUtenteR(u);
 	}
 
 

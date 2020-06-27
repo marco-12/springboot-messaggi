@@ -11,9 +11,11 @@ public interface UtenteServiceDAO {
 
 	List<Utente> findAll();
 	
+	List<Utente> findNickname();
+	
 	void remove(Utente t);
 
 	Utente getUtente(String t);
-	
-	List<Messaggio> findMessaggiRicevuti(Messaggio messaggio);
+
+	List<Messaggio> findMessaggiRicevuti(Utente u);
 }

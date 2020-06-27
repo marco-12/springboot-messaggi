@@ -17,5 +17,7 @@ public interface UtenteRepository extends JpaRepository<Utente, String>{
 	public List<Utente> search(@Param("keyword") String keyword);
 
 	public Utente findByNickname(String nickname);
+
+	public boolean existsById(Long id);
 	 
 }
