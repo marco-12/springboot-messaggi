@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -29,6 +31,7 @@ public class Utente {
 	private int eta;
 	
 	
+	@JsonIgnore
 	@OneToMany
 	private List<Messaggio> listaMessaggiInviati;
 	

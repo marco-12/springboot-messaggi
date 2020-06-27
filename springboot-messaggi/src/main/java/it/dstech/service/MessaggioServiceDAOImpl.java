@@ -22,9 +22,9 @@ public class MessaggioServiceDAOImpl implements MessaggioServiceDAO{
 
 	@Override
 	public boolean salvaUtente(String nickname, Messaggio t) {
-		
+		Utente utenteR = utenteRepos.findByNickname(t.getUtenteR().getNickname());
 		LocalDateTime data = LocalDateTime.now();
-		t.setUtenteR(t.getUtenteR());
+		t.setUtenteR(utenteR);
 		t.setNicknameMittente(nickname);
 		t.setData(data);
 		Messaggio save = messaggioRepos.save(t);
@@ -56,7 +56,6 @@ public class MessaggioServiceDAOImpl implements MessaggioServiceDAO{
 	public List<Messaggio> listaMessaggiInviatiUtente(String nickname) {
 		
 		return utenteRepos.findByNickname(nickname).getListaMessaggiInviati();
-		
 		
 		
 		

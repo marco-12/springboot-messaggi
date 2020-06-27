@@ -56,17 +56,9 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 	}
 
 	@Override
-	public List<Messaggio> findMessaggiRicevuti(Utente u) {
-		return messageRepos.findByUtenteR(u);
+	public List<Messaggio> findMessaggiRicevuti(String nickname) {
+		return messageRepos.findByUtenteR(utenteRepos.findByNickname(nickname));
 	}
-
-
-
-	
-
-	
-
-
 
 
 }

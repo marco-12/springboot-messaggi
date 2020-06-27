@@ -17,5 +17,5 @@ public interface UtenteServiceDAO {
 
 	Utente getUtente(String t);
 
-	List<Messaggio> findMessaggiRicevuti(Utente u);
+	List<Messaggio> findMessaggiRicevuti(String nickname);
 }

@@ -54,7 +54,7 @@ public class RestControllerChat {
 	@RequestMapping(value = "/lista_messaggi_ricevuti_utente", method = RequestMethod.POST)
 	@ApiOperation(value = "Restituisce la lista dei messaggi ricevuti", notes = "Con questa chiamata riceveremo la lista dei messaggi ricevuti dall'utente nel sistema")
 	public List<Messaggio> getMessaggiRiceuti(@ApiParam(value = "Oggetto utente per ricevere la sua lista di messaggi ricevuti", name = "utente") @RequestBody Utente utente) {
-		return utenteService.findMessaggiRicevuti(utente);
+		return utenteService.findMessaggiRicevuti(utente.getNickname());
 	}
 	@RequestMapping(value = "/lista_messaggi_inviati_utente", method = RequestMethod.POST)
 	@ApiOperation(value = "Restituisce la lista dei messaggi inviati", notes = "Con questa chiamata riceveremo la lista dei messaggi inviati dall'utente nel sistema")
