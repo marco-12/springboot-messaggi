@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import it.dstech.repository.MessaggioRepository;
 import it.dstech.repository.UtenteRepository;
+import javassist.expr.NewArray;
 import it.dstech.model.Messaggio;
 import it.dstech.model.Utente;
 
@@ -40,9 +41,14 @@ public class UtenteServiceDAOImpl implements UtenteServiceDAO {
 	}
 	
 	@Override
-	public List<Utente> findNickname() {
-		
-		return utenteRepos.findAll();
+	public List<String> findNickname() {
+		List<Utente> u = utenteRepos.findAll();
+		List<String> listaNickname = new ArrayList<String>();
+		for (Utente utente : u) {
+			listaNickname.add(utente.getNickname());
+			
+		}
+		return listaNickname;
 	}
 
 	@Override

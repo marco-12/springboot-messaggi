@@ -11,7 +11,7 @@ public interface UtenteServiceDAO {
 
 	List<Utente> findAll();
 	
-	List<Utente> findNickname();
+	List<String> findNickname();
 	
 	void remove(Utente t);
 

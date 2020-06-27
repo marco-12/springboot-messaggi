@@ -32,7 +32,7 @@ public class RestControllerChat {
 	
 	@RequestMapping(value = "/vediNickname", method = RequestMethod.GET)
 	@ApiOperation(value = "Recupera tutti i nickname dal sistema", notes = "Con questa chiamata riceveremo tutti i nickname degli utenti registrati al sistema")
-	public List<Utente> getNicknames() {
+	public List<String> getNicknames() {
 		return utenteService.findNickname();
 	}
 	
